@@ -9,12 +9,6 @@ def dec_handler(path:str,func,method,routes):
         routes[f"{method}"].append(url(path, param_names, annotations, default_map, func))
         return func
 
-def mid_handler (middle_ware_method:str,func,middleware):
-      if middle_ware_method in middleware:
-            return "A middleware of the same name is already present"
-      middleware[middle_ware_method]=func
-      
-
 def url(path, param_names, annotations, default_map, func):
     pattern = re.sub(r'{(\w+)}', r'(?P<\1>[^/]+)', path)
     compiled_pattern = re.compile(f'^{pattern}$')
